@@ -6,20 +6,30 @@ class FamilyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF8FBF8),
+
       appBar: AppBar(
-        title: const Text("Family Members"),
-        backgroundColor: const Color(0xFF1976D2),
-        foregroundColor: Colors.white,
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: const Text(
+          "Family Members",
+          style: TextStyle(
+            color: Color(0xFF2F4F4F),
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        iconTheme: const IconThemeData(color: Color(0xFF2F4F4F)),
       ),
 
       floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFF1976D2),
+        backgroundColor: const Color(0xFF8FCB9B),
         onPressed: () {},
         child: const Icon(Icons.add, color: Colors.white),
       ),
 
       body: ListView(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         children: const [
           FamilyMemberCard(
             name: "John Doe",
@@ -27,7 +37,7 @@ class FamilyScreen extends StatelessWidget {
             phone: "9876543210",
           ),
 
-          SizedBox(height: 12),
+          SizedBox(height: 15),
 
           FamilyMemberCard(
             name: "Jane Doe",
@@ -35,7 +45,7 @@ class FamilyScreen extends StatelessWidget {
             phone: "9876543211",
           ),
 
-          SizedBox(height: 12),
+          SizedBox(height: 15),
 
           FamilyMemberCard(
             name: "Alex Doe",
@@ -62,31 +72,58 @@ class FamilyMemberCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 4),
+          ),
+        ],
       ),
-      child: ListTile(
-        leading: const CircleAvatar(
-          backgroundColor: Color(0xFF1976D2),
-          child: Icon(
-            Icons.person,
-            color: Colors.white,
+      child: Row(
+        children: [
+          const CircleAvatar(
+            radius: 28,
+            backgroundColor: Color(0xFF8FCB9B),
+            child: Icon(Icons.person, color: Colors.white, size: 30),
           ),
-        ),
-        title: Text(
-          name,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
+
+          const SizedBox(width: 15),
+
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name,
+                  style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF2F4F4F),
+                  ),
+                ),
+
+                const SizedBox(height: 4),
+
+                Text(relation, style: const TextStyle(color: Colors.black54)),
+
+                const SizedBox(height: 2),
+
+                Text(phone, style: const TextStyle(color: Colors.black54)),
+              ],
+            ),
           ),
-        ),
-        subtitle: Text("$relation\n$phone"),
-        isThreeLine: true,
-        trailing: const Icon(
-          Icons.arrow_forward_ios,
-          size: 18,
-        ),
+
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.phone, color: Color(0xFF8FCB9B)),
+          ),
+        ],
       ),
     );
   }

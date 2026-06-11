@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import 'family_screen.dart';
 import 'contacts_screen.dart';
 import 'profile_screen.dart';
@@ -5,35 +7,54 @@ import 'history_screen.dart';
 import 'reminders_screen.dart';
 import 'location_screen.dart';
 
-import 'package:flutter/material.dart';
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF5F7FA),
+      backgroundColor: const Color(0xFFF8FBF8),
 
       appBar: AppBar(
-        backgroundColor: const Color(0xFF1976D2),
-        foregroundColor: Colors.white,
+        backgroundColor: const Color(0xFFF8FBF8),
         elevation: 0,
-        title: const Text("CareConnect"),
+        automaticallyImplyLeading: false,
+
+        title: Image.asset('assets/images/careconnect_logo.png', height: 45),
+
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 15),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const ProfileScreen(),
+                  ),
+                );
+              },
+              child: const CircleAvatar(
+                backgroundColor: Color(0xFF8FCB9B),
+                child: Icon(Icons.person, color: Colors.white),
+              ),
+            ),
+          ),
+        ],
       ),
 
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const SizedBox(height: 10),
+
+            // Welcome Card
             Container(
-              width: double.infinity,
+              margin: const EdgeInsets.symmetric(horizontal: 20),
               padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                color: Color(0xFF1976D2),
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(25),
-                  bottomRight: Radius.circular(25),
-                ),
+              decoration: BoxDecoration(
+                color: const Color(0xFF8FCB9B),
+                borderRadius: BorderRadius.circular(25),
               ),
               child: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,45 +63,55 @@ class HomeScreen extends StatelessWidget {
                     "Hello, Omkar 👋",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 26,
+                      fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  SizedBox(height: 5),
                   Text(
                     "Stay Connected. Stay Protected.",
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: 16,
-                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
                 ],
               ),
             ),
 
-            const SizedBox(height: 25),
+            const SizedBox(height: 30),
 
-            ElevatedButton(
-              onPressed: () {},
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.red,
-                shape: const CircleBorder(),
-                padding: const EdgeInsets.all(45),
+            // SOS Button
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.red.withOpacity(0.35),
+                    blurRadius: 25,
+                    spreadRadius: 5,
+                  ),
+                ],
               ),
-              child: const Text(
-                "SOS",
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
+              child: ElevatedButton(
+                onPressed: () {},
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(55),
+                ),
+                child: const Text(
+                  "SOS",
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
 
-            const SizedBox(height: 30),
+            const SizedBox(height: 35),
 
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
+              padding: const EdgeInsets.symmetric(horizontal: 20),
               child: GridView.count(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -88,88 +119,95 @@ class HomeScreen extends StatelessWidget {
                 crossAxisSpacing: 15,
                 mainAxisSpacing: 15,
                 childAspectRatio: 1.1,
-                children:  [
-                 DashboardCard(
-  title: "Family",
-  icon: Icons.family_restroom,
-  color: Colors.blue,
-  onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const FamilyScreen(),
-      ),
-    );
-  },
-),
+                children: [
                   DashboardCard(
-  title: "Contacts",
-  icon: Icons.contact_phone,
-  color: Colors.green,
-  onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ContactsScreen(),
-      ),
-    );
-  },
-),
+                    title: "Family",
+                    icon: Icons.family_restroom,
+                    color: Colors.blue,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const FamilyScreen(),
+                        ),
+                      );
+                    },
+                  ),
+
+                  DashboardCard(
+                    title: "Contacts",
+                    icon: Icons.contact_phone,
+                    color: Colors.green,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ContactsScreen(),
+                        ),
+                      );
+                    },
+                  ),
+
                   DashboardCard(
                     title: "Location",
                     icon: Icons.location_on,
                     color: Colors.orange,
                     onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const LocationScreen(),
-      ),
-    );
-  },
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const LocationScreen(),
+                        ),
+                      );
+                    },
                   ),
+
                   DashboardCard(
                     title: "Reminders",
                     icon: Icons.medication,
                     color: Colors.purple,
                     onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const RemindersScreen(),
-      ),
-    );
-  },
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const RemindersScreen(),
+                        ),
+                      );
+                    },
                   ),
+
                   DashboardCard(
                     title: "History",
                     icon: Icons.history,
                     color: Colors.teal,
                     onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const HistoryScreen(),
-      ),
-    );
-  },
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HistoryScreen(),
+                        ),
+                      );
+                    },
                   ),
+
                   DashboardCard(
-  title: "Profile",
-  icon: Icons.person,
-  color: Colors.indigo,
-  onTap: () {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const ProfileScreen(),
-      ),
-    );
-  },
-),
+                    title: "Profile",
+                    icon: Icons.person,
+                    color: Colors.indigo,
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const ProfileScreen(),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),
+
+            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -193,28 +231,41 @@ class DashboardCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 4,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
-      ),
-      child: InkWell(
-        borderRadius: BorderRadius.circular(15),
-        onTap: onTap,
+    return InkWell(
+      borderRadius: BorderRadius.circular(20),
+      onTap: onTap,
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              icon,
-              size: 45,
-              color: color,
+            Container(
+              padding: const EdgeInsets.all(15),
+              decoration: BoxDecoration(
+                color: color.withOpacity(0.12),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(icon, color: color, size: 35),
             ),
-            const SizedBox(height: 10),
+
+            const SizedBox(height: 12),
+
             Text(
               title,
               style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                fontSize: 15,
+                fontWeight: FontWeight.w600,
+                color: Color(0xFF2F4F4F),
               ),
             ),
           ],

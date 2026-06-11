@@ -1,4 +1,3 @@
-import 'login_screen.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
@@ -18,9 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(
-          builder: (context) => const LoginScreen(),
-        ),
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
       );
     });
   }
@@ -28,53 +25,51 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF1976D2),
+      backgroundColor: const Color(0xFFF8FBF8),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              height: 120,
-              width: 120,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(60),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/careconnect_logo.png',
+                height: 180,
+                fit: BoxFit.contain,
               ),
-              child: const Icon(
-                Icons.health_and_safety,
-                size: 70,
-                color: Color(0xFF1976D2),
+
+              const SizedBox(height: 20),
+
+              const Text(
+                "CareConnect",
+                style: TextStyle(
+                  fontSize: 34,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF2F4F4F),
+                  letterSpacing: 1,
+                ),
               ),
-            ),
 
-            const SizedBox(height: 25),
+              const SizedBox(height: 8),
 
-            const Text(
-              "CareConnect",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 32,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1,
+              const Text(
+                "Stay Connected. Stay Protected.",
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 15, color: Colors.black54),
               ),
-            ),
 
-            const SizedBox(height: 10),
+              const SizedBox(height: 35),
 
-            const Text(
-              "Stay Connected. Stay Protected.",
-              style: TextStyle(
-                color: Colors.white70,
-                fontSize: 16,
+              const SizedBox(
+                width: 35,
+                height: 35,
+                child: CircularProgressIndicator(
+                  strokeWidth: 3,
+                  color: Color(0xFF8FCB9B),
+                ),
               ),
-            ),
-
-            const SizedBox(height: 40),
-
-            const CircularProgressIndicator(
-              color: Colors.white,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

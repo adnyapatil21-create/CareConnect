@@ -1,4 +1,10 @@
 import 'family_screen.dart';
+import 'contacts_screen.dart';
+import 'profile_screen.dart';
+import 'history_screen.dart';
+import 'reminders_screen.dart';
+import 'location_screen.dart';
+
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -97,35 +103,70 @@ class HomeScreen extends StatelessWidget {
   },
 ),
                   DashboardCard(
-                    title: "Contacts",
-                    icon: Icons.contact_phone,
-                    color: Colors.green,
-                    onTap: () {},
-                  ),
+  title: "Contacts",
+  icon: Icons.contact_phone,
+  color: Colors.green,
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ContactsScreen(),
+      ),
+    );
+  },
+),
                   DashboardCard(
                     title: "Location",
                     icon: Icons.location_on,
                     color: Colors.orange,
-                    onTap: () {},
+                    onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LocationScreen(),
+      ),
+    );
+  },
                   ),
                   DashboardCard(
                     title: "Reminders",
                     icon: Icons.medication,
                     color: Colors.purple,
-                    onTap: () {},
+                    onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const RemindersScreen(),
+      ),
+    );
+  },
                   ),
                   DashboardCard(
                     title: "History",
                     icon: Icons.history,
                     color: Colors.teal,
-                    onTap: () {},
+                    onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const HistoryScreen(),
+      ),
+    );
+  },
                   ),
                   DashboardCard(
-                    title: "Profile",
-                    icon: Icons.person,
-                    color: Colors.indigo,
-                    onTap: () {},
-                  ),
+  title: "Profile",
+  icon: Icons.person,
+  color: Colors.indigo,
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const ProfileScreen(),
+      ),
+    );
+  },
+),
                 ],
               ),
             ),

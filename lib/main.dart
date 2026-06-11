@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
-      home: Scaffold(body: Center(child: Text("Welcome to CareConnect"))),
-    ),
-  );
+  runApp(const CareConnectApp());
+}
+
+class CareConnectApp extends StatelessWidget {
+  const CareConnectApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
+    );
+  }
 }
